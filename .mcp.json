@@ -1,12 +1,26 @@
 {
   "mcpServers": {
-    "clion": {
+    "clion_stdio": {
       "type": "stdio",
-      "command": "C:\\Program Files\\JetBrains\\CLion 2025.2.1\\bin\\clion64.exe",
+      "command": "/mnt/c/Program Files/JetBrains/CLion 2025.2.1/bin/clion64.exe",
       "args": ["stdioMcpServer"],
       "env": {
         "IJ_MCP_SERVER_PROJECT_PATH": "D:/GITHUB/structural_programming",
         "IJ_MCP_SERVER_PORT": "64362"
+      }
+    },
+    "clion_sse":{
+      "type": "sse",
+      "url": "http://127.0.0.1:64362/sse",
+      "headers": {
+        "IJ_MCP_SERVER_PROJECT_PATH": "D:/GITHUB/structural_programming"
+      }
+    },
+    "clion_stream":{
+      "type": "streamable-http",
+      "url": "http://127.0.0.1:64362/stream",
+      "headers": {
+        "IJ_MCP_SERVER_PROJECT_PATH": "D:/GITHUB/structural_programming"
       }
     },
     "win-gui": {
