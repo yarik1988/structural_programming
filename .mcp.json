@@ -1,5 +1,14 @@
 {
   "mcpServers": {
+    "clion": {
+      "type": "stdio",
+      "command": "C:\\Program Files\\JetBrains\\CLion 2025.2.1\\bin\\clion64.exe",
+      "args": ["stdioMcpServer"],
+      "env": {
+        "IJ_MCP_SERVER_PROJECT_PATH": "D:/GITHUB/structural_programming",
+        "IJ_MCP_SERVER_PORT": "64362"
+      }
+    },
     "win-gui": {
       "command": "python.exe",
       "args": [".claude/mcp/win_gui_server.py"]
