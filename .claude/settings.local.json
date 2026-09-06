@@ -2,12 +2,12 @@
   "env": {
     "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
     "ANTHROPIC_API_KEY": "",
-    "ANTHROPIC_MODEL": "z-ai/glm-5.3",
-    "ANTHROPIC_DEFAULT_SONNET_MODEL": "z-ai/glm-5.3",
-    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "z-ai/glm-5.3-flash",
-    "ANTHROPIC_DEFAULT_OPUS_MODEL": "z-ai/glm-5.3",
-    "CLAUDE_CODE_MAX_CONTEXT_TOKENS": "400000",
-    "CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
+    "__ANTHROPIC_MODEL": "z-ai/glm-5.3",
+    "__ANTHROPIC_DEFAULT_SONNET_MODEL": "z-ai/glm-5.3",
+    "__ANTHROPIC_DEFAULT_HAIKU_MODEL": "z-ai/glm-5.3-flash",
+    "__ANTHROPIC_DEFAULT_OPUS_MODEL": "z-ai/glm-5.3",
+    "__CLAUDE_CODE_MAX_CONTEXT_TOKENS": "400000",
+    "__CLAUDE_CODE_ENABLE_GATEWAY_MODEL_DISCOVERY": "1"
   },
   "permissions": {
     "allow": [
@@ -16,9 +16,7 @@
   },
   "enabledMcpjsonServers": [
     "win-gui",
-    "clion_sse",
-    "clion_stream",
-    "clion_stdio"
+    "clion"
   ],
   "effortLevel": "high",
   "enableAllProjectMcpServers": true

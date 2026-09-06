@@ -103,6 +103,40 @@ Freeglut windows: client area is offset inside the captured image by the
 frame (GRAPH: client 800x800 inside an 816x839 capture, offset [8, 31]) —
 use `space="window"` + screenshot coords and the server does the math.
 
+## Driving the running CLion — clion MCP server
+
+`.claude/mcp/clion_bridge.py`, registered in `.mcp.json` as `clion`. Gives 54
+`mcp__clion__*` tools straight from the IDE you already have open:
+`get_file_problems` / `get_compiler_info` (CLion's real inspections),
+`get_run_configurations` / `execute_run_configuration`, `apply_patch`,
+`search_symbol` / `search_regex`, `git_status`, the whole `xdebug_*` family
+(breakpoints, stack, frame values, registers, memory, disassemble), plus DB tools.
+
+**Why a bridge and not a plain url:** CLion's MCP server binds *Windows*
+loopback only (`127.0.0.1:64362`). WSL2 here runs in NAT mode
+(`172.24.144.x`), so WSL's `127.0.0.1` is a different network stack and an
+`sse`/`streamable-http` entry pointing at `127.0.0.1` can never connect. The
+bridge is a stdio MCP server run through interop by `python.exe`, so it executes
+on the Windows side where that address resolves, and relays JSON-RPC over
+`POST /stream`. A `type: stdio` entry running `clion64.exe stdioMcpServer` also
+fails (`-32000`): the launcher hands off to the already-running IDE and exits,
+closing the pipe. CLion's own `0.0.0.0` port (63247) is firewall-blocked from
+WSL, so port-forwarding isn't a shortcut either.
+
+**Env vars do NOT cross the WSL→Windows interop boundary** unless the name is
+listed in `WSLENV` — an `"env"` block in `.mcp.json` silently arrives empty in a
+`python.exe` server. argv always crosses, so configure via flags:
+`--project-path`, `--url`, `--port`, `--timeout`, `--debug` (env is fallback
+only, for running it natively on Windows). This bit any future stdio server
+launched through interop, not just this one.
+
+Notes: requires CLion open on the project (it's a client of the live IDE, not a
+standalone service). Port defaults to 64362; if that's dead the bridge
+enumerates `clion64.exe`'s loopback ports and probes for the MCP one, so a
+port change self-heals. Debug with
+`python.exe -u .claude/mcp/clion_bridge.py --debug` and feed it JSON-RPC lines
+on stdin. Only JSON-RPC may ever reach stdout — log to stderr.
+
 ## Environment
 
 - Python: `C:\Program Files\Python312\python.exe` (3.12), with `mcp`, `pywin32`,
