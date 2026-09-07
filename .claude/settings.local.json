@@ -1,7 +1,6 @@
 {
   "env": {
     "ANTHROPIC_BASE_URL": "https://openrouter.ai/api",
-    "ANTHROPIC_API_KEY": "",
     "ANTHROPIC_MODEL": "z-ai/glm-5.3",
     "ANTHROPIC_DEFAULT_SONNET_MODEL": "z-ai/glm-5.3",
     "ANTHROPIC_DEFAULT_HAIKU_MODEL": "z-ai/glm-5.3-flash",

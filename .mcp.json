@@ -1,18 +1,14 @@
 {
   "mcpServers": {
-    "clion": {
-      "type": "stdio",
-      "command": "python.exe",
-      "args": [
-        "-u",
-        ".claude/mcp/clion_bridge.py",
-        "--project-path",
-        "D:/GITHUB/structural_programming"
-      ]
-    },
     "win-gui": {
       "command": "python.exe",
-      "args": [".claude/mcp/win_gui_server.py"]
+      "args": [
+        ".claude/mcp/win_gui_server.py"
+      ]
+    },
+    "clion": {
+      "url": "http://127.0.0.1:64362/stream",
+      "type": "http"
     }
   }
 }

@@ -1,12 +1,7 @@
-# Windows CLion MCP bridge, launched from WSL.
-# WSLENV forwards the project and port variables into the Windows process.
-[mcp_servers.clion]
-command = "/mnt/c/Program Files/JetBrains/CLion 2025.2.1/bin/clion64.exe"
-args = ["stdioMcpServer"]
-startup_timeout_sec = 60
-tool_timeout_sec = 120
-
-[mcp_servers.clion.env]
-IJ_MCP_SERVER_PROJECT_PATH = "D:/GITHUB/structural_programming"
-IJ_MCP_SERVER_PORT = "64362"
-WSLENV = "IJ_MCP_SERVER_PROJECT_PATH:IJ_MCP_SERVER_PORT"
+  [mcp_servers.clion]
+    url = "http://127.0.0.1:64362/stream"
+  [mcp_servers.win-gui]
+    command = "python.exe"
+    args = [
+      ".claude/mcp/win_gui_server.py"
+    ]
