@@ -285,7 +285,10 @@ int main() {
   auto selected_mode = modes.front();
   unsigned int DimX = selected_mode.size.x;
   unsigned int DimY = selected_mode.size.y;
-  sf::RenderWindow window(selected_mode, "Screener", sf::State::Fullscreen,
+  constexpr auto window_state = SCREENER_WINDOW_MODE == 2
+                                  ? sf::State::Fullscreen
+                                  : sf::State::Windowed;
+  sf::RenderWindow window(selected_mode, "Screener", window_state,
                           settings);
   window.setVerticalSyncEnabled(true);
   window.setFramerateLimit(60);

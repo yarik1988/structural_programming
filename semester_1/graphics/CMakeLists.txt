@@ -65,6 +65,15 @@ target_link_libraries(SPRITES PRIVATE SFML::Graphics SFML::Window SFML::System)
 add_executable(SCREENER Screener.cpp glad/glad.c)
 target_link_libraries(SCREENER PRIVATE SFML::Graphics SFML::Window SFML::System ImGui-SFML::ImGui-SFML)
 
+# 1 = windowed, 2 = fullscreen. Override at configure time with
+# -DSCREENER_WINDOW_MODE=<1|2>.
+set(SCREENER_WINDOW_MODE 1 CACHE STRING "Screener window mode: 1=windowed, 2=fullscreen")
+set_property(CACHE SCREENER_WINDOW_MODE PROPERTY STRINGS 1 2)
+if (NOT SCREENER_WINDOW_MODE STREQUAL "1" AND NOT SCREENER_WINDOW_MODE STREQUAL "2")
+    message(FATAL_ERROR "SCREENER_WINDOW_MODE must be 1 (windowed) or 2 (fullscreen)")
+endif()
+target_compile_definitions(SCREENER PRIVATE SCREENER_WINDOW_MODE=${SCREENER_WINDOW_MODE})
+
 add_executable(FRAC_TREE FracTree.cpp)
 target_link_libraries(FRAC_TREE PRIVATE SFML::Graphics SFML::Window SFML::System)
 
