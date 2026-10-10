@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(Number)
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 23)
+link_libraries(stdc++exp)
+
 add_executable(factDivisors factDivisors.cpp)
 add_executable(hamming hamming.cpp)
 add_executable(longDifference longDifference.cpp)
