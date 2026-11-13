@@ -1,4 +1,5 @@
 .idea/
 cmake-build-*/
+build/
 **/.cache
 __pycache__/
