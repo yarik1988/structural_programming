@@ -101,13 +101,16 @@ target_link_libraries(INTERVAL_INTERSECTION PRIVATE SFML::Graphics SFML::Window 
 add_executable(TRIANGLE_SQUARE TriangleSquare.cpp)
 target_link_libraries(TRIANGLE_SQUARE PRIVATE SFML::Graphics SFML::Window SFML::System)
 
-add_custom_target(sem1_graphics DEPENDS ROTATING_SQUARE SPRITES SCREENER FRAC_TREE BUSY_TURTLE GAME_LIFE 3D GRAPH CYCLOID FLOODFILL INTERVAL_INTERSECTION TRIANGLE_SQUARE)
+add_executable(BALL_PHYSICS BallPhysics.cpp)
+target_link_libraries(BALL_PHYSICS PRIVATE SFML::Graphics SFML::Window SFML::System)
+
+add_custom_target(sem1_graphics DEPENDS ROTATING_SQUARE SPRITES SCREENER FRAC_TREE BUSY_TURTLE GAME_LIFE 3D GRAPH CYCLOID FLOODFILL INTERVAL_INTERSECTION TRIANGLE_SQUARE BALL_PHYSICS)
 
 # --- Platform-specific settings ---
 if (WIN32)
     # Apply MinGW static flags only when using GNU or Clang toolchains targeting Windows.
     # Use generator-expression so this won't affect MSVC.
-    foreach(tgt ROTATING_SQUARE SPRITES SCREENER FRAC_TREE BUSY_TURTLE GAME_LIFE 3D GRAPH CYCLOID FLOODFILL INTERVAL_INTERSECTION TRIANGLE_SQUARE)
+    foreach(tgt ROTATING_SQUARE SPRITES SCREENER FRAC_TREE BUSY_TURTLE GAME_LIFE 3D GRAPH CYCLOID FLOODFILL INTERVAL_INTERSECTION TRIANGLE_SQUARE BALL_PHYSICS)
         if (TARGET ${tgt})
             target_link_options(${tgt} PRIVATE
                     $<$<AND:$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>>,$<PLATFORM_ID:Windows>>:
